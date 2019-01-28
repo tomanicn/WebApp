@@ -1,0 +1,26 @@
+<!-- Forma za registraciju novog korisnika -->
+<hr>
+<div>
+    <div class="mb-3">
+        <form ng-submit="rc.registration()">
+            <div class="form-group">
+                <label for="username">Korisnicko ime: </label>
+                <input type="text" class="form-control" id="username" placeholder="Korisnicko ime" ng-model="rc.noviKorisnik.username" required>
+            </div>
+            <div class="form-group">
+                <label for="lozinka">Lozinka: </label>
+                <input type="password" class="form-control" id="lozinka" placeholder="Lozinka" ng-model="rc.noviKorisnik.lozinka" required> 
+            </div>
+            <div class="form-group">
+                <label for="ime">Ime: </label>
+                <input type="text" class="form-control" id="ime" placeholder="Ime" ng-model="rc.noviKorisnik.ime" required>
+            </div>
+            <div class="form-group">
+                <label for="prezime">Prezime: </label>
+                <input type="text" class="form-control" id="prezime" placeholder="Prezime" ng-model="rc.noviKorisnik.prezime" required>
+            </div>
+            <input type="submit" value="Registruj se" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+<hr>

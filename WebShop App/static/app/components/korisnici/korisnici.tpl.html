@@ -1,0 +1,66 @@
+<!-- Forma za dodaovanje novog korisnika -->
+<div>
+    <div class="mb-3">
+        <form ng-submit="kc.dodajKorisnika()">
+            <div class="form-group">
+                <label for="username">Korisničko ime</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" ng-model="kc.noviKorisnik.username"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="ime">Ime</label>
+                <input type="text" class="form-control" id="ime" placeholder="Ime" ng-model="kc.noviKorisnik.ime"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="prezime">Prezime</label>
+                <input type="text" class="form-control" id="prezime" placeholder="Prezime" ng-model="kc.noviKorisnik.prezime"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="lozinka">Lozinka</label>
+                <input type="text" class="form-control" id="lozinka" placeholder="Lozinka" ng-model="kc.noviKorisnik.lozinka"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="uloga">Uloga</label>
+                <input type="text" class="form-control" id="uloga" placeholder="Uloga" ng-model="kc.noviKorisnik.uloga"
+                    required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Dodaj">
+        </form>
+    </div>
+
+<!-- Forma za ispisivanje korisnika na serveru -->
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>R. br.</th>
+                <th>Username</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Lozinka</th>
+                <th>Uloga</th>
+                <th class="text-right">Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="korisnik in kc.korisnici">
+                <td>{{$index+1}}.</td>
+                <td>{{korisnik.username}}</td>
+                <td>{{korisnik.ime}}</td>
+                <td>{{korisnik.prezime}}</td>
+                <td>{{korisnik.lozinka}}</td>
+                <td>{{korisnik.uloga}}</td>
+                <td class="text-right">
+                    <button class="btn btn-danger btn-sm" ng-click="kc.ukloniKorisnika(korisnik.id)"><i class="fas fa-trash-alt"></i>Ukloni</button>
+                    <a ui-sref="korisnik({id: korisnik.id})" class="btn btn-primary btn-sm"><i class="far fa-eye"></i>Detalji</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>

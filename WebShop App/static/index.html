@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Ukljucivanje css-a -->
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+
+    <title>WebShop</title>
+</head>
+
+<!-- Ukljucivanje u Body APP sa ng-app -->
+<body ng-app="app">
+    <div class="container" ng-controller="loginCtrl as lc">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a ui-sref="home" class="nav-link">Stavke</a></li>
+                <li class="nav-item"><a ui-sref="korisnici" class="nav-link">Korisnici</a></li>
+                <li class="nav-item"><a ui-sref="trebovanja" class="nav-link">Trebovanja</a></li>
+                
+            </ul>
+            <!-- Login forma -->
+            <div class="float-right" ng-controller="loginCtrl as lc">
+                <form class="form-inline" ng-submit="lc.login()">
+                    <div ng-if="!lc.loggedIn">
+                        <input type="text" placeholder="Korisnicko ime" class="form-control mr-sm-2" ng-model="lc.user.username">
+                        <input type="password" placeholder="Lozinka" class="form-control mr-sm-2" ng-model="lc.user.lozinka">
+                        <input type="submit" value="Prijava" class="btn btn-primary btn">
+                    </div>
+                </form>
+                <button ng-if="lc.loggedIn" ng-click="lc.logout()" class="btn btn-primary">Odjava</button>
+            </div>
+            <hr>
+            <div class="alert alert-primary" role="alert" ng-controller="loginCtrl as lc">
+                <div ng-if="!lc.loggedIn">
+                    <h6>Nemate nalog?</h6>
+                    <a ui-sref="registracija">Registruj se</a>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Direktiva za viewove -->
+        <ui-view></ui-view>
+
+    </div>
+
+    <!-- Ukljucivanje skripti za bootstrap popper i jquery -->
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script src="scripts/popper.min.js"></script>
+    <script src="scripts/bootstrap.bundle.min.js"></script>
+
+    <!-- Ukljucivanje skripti za Angular -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/components/magacin/magacinCtrl.js"></script>
+    <script src="app/components/stavka/stavkaCtrl.js"></script>
+    <script src="app/components/korisnici/korisniciCtrl.js"></script>
+    <script src="app/components/korisnik/korisnikCtrl.js"></script>
+    <script src="app/components/login/loginCtrl.js"></script>
+    <script src="app/components/trebovanja/trebovanjaCtrl.js"></script>
+    <script src="app/components/registracija/registracijaCtrl.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!-- Forma za dodavanje robe  -->
+<div>
+    <div class="mb-3">
+        <form ng-submit="tc.dodajTrebovanje()">
+            <div class="form-group">
+                <label for="kolicina">Količina</label>
+                <input type="number" class="form-control" id="kolicina" placeholder="Količina" ng-model="tc.novoTrebovanje.kolicina" min="1" required>
+            </div>
+            <div class="form-group">
+                    <label for="korisnik">Korisnik</label>
+                    <select class="form-control" id="korisnik" ng-options="korisnik.id as korisnik.ime + ' ' + korisnik.prezime for korisnik in tc.korisnici track by korisnik.username"
+                        ng-model="tc.novoTrebovanje.korisnik" required><option></option></select>
+                </div>
+            <div class="form-group">
+                <label for="stavka">Stavka</label>
+                <select class="form-control" id="stavka" ng-options="stavka.id as stavka.naziv for stavka in tc.stavke track by stavka.id"
+                    ng-model="tc.novoTrebovanje.stavka" required><option></option></select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Dodaj">
+        </form>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>R. br.</th>
+                <th>Korisnik</th>
+                <th>Stavka id</th>
+                <th>Datum</th>
+                <th>Količina</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="trebovanje in tc.trebovanja">
+                <td>{{$index+1}}.</td>
+                <td>{{trebovanje.korisnici_id}}</td>
+                <td>{{trebovanje.stavke_id}}</td>
+                <!-- Filter za datum, pogledati angular dokumentaciju za filtere. -->
+                <td>{{trebovanje.datum|date:'dd. MM. yyyy. HH:mm'}}</td>
+                <td>{{trebovanje.kolicina}}</td>
+                <td><button class="btn btn-danger btn-sm" ng-click="tc.ukloniTrebovanje(trebovanje.id)"><i class="fas fa-trash-alt"></i>Ukloni</button></td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>

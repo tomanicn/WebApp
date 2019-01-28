@@ -1,0 +1,83 @@
+<div>
+    <!-- FORMA ZA DODAVANJE ROBE -->
+    <div class="mb-3">
+        <form ng-submit="mc.dodajRobu()">
+            <div class="form-group">
+                <label for="naziv">Naziv: </label>
+                <input type="text" class="form-control" id="naziv" placeholder="Naziv"  ng-model="mc.novaRoba.naziv" required>
+            </div>
+            <div class="form-group">
+                <label for="kolicina">Kolicina: </label>
+                <input type="number" class="form-control" id="kolicina" placeholder="Kolicina"  ng-model="mc.novaRoba.kolicina" required>
+            </div>
+            <div class="form-group">
+                <label for="opis">Opis</label>
+                <input type="text" class="form-control" id="opis" placeholder="Opis"  ng-model="mc.novaRoba.opis" required>
+            </div>
+            <input type="submit" value="Dodaj" class="btn btn-primary">
+        </form>
+    </div>
+    <hr>
+
+    <!-- FORMA ZA SORTIRANJE ROBE -->
+    <div class="mb-3">
+        <form ng-submit="mc.dobaviRobu()">
+            <div class="form-group">
+                <label for="naziv">Naziv</label>
+                <input type="text" class="form-control" id="naziv_stavke" placeholder="Naziv" ng-model="mc.parametriPretrage.naziv">
+            </div>
+            <div class="form-group">
+                <label for="kolicinaOd">Minimalna količina</label>
+                <input type="number" class="form-control" id="kolicinaOd" placeholder="Minimalna količina" ng-model="mc.parametriPretrage.kolicinaOd">
+            </div>
+            <div class="form-group">
+                <label for="kolicinaDo">Maksimalna količina</label>
+                <input type="number" class="form-control" id="kolicinaDo" placeholder="Maksimalna količina" ng-model="mc.parametriPretrage.kolicinaDo">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Pretraga">
+        </form>
+    </div>
+
+<!-- Forma za sortiranje robe -->
+
+    <hr>
+    <div class="mb-3">
+        <div class="alert alert-primary" role="alert">
+            <h5>Sortiraj po : </h5>
+            <select ng-model="sortColumn" class="custom-select">
+                <option value="naziv">Naziv</option>
+                <option value="-kolicina">Kolicina (opadajuce)</option>
+                <option value="+kolicina">Kolicina (rastuce)</option>
+            </select>
+        </div>
+    </div>
+    <hr>
+
+    <!-- PREGLED ROBE -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>R. br.</th>
+                <th>Naziv</th>
+                <th>Kolicina</th>
+                <th>Opis</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="stavka in mc.roba | orderBy:sortColumn">
+                <td>{{$index+1}}</td>
+                <td>{{stavka.naziv}}</td>
+                <td>{{stavka.kolicina}}</td>
+                <td>{{stavka.opis}}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" ng-click="mc.ukloniRobu(stavka.id)"><i class="fas fa-trash-alt"></i>Ukloni</button>
+                    <a ui-sref="stavka({id: stavka.id})" class="btn btn-primary btn-sm"><i class="far fa-eye"></i>Detalji</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+</div>
